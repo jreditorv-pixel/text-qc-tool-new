@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qsee – Text QC Tool (Prototype)</title>
+  <style>
+    :root {
+      --blue:#3f5fb5;
+      --light:#f4f6fb;
+      --border:#dcdfe6;
+      --text:#1f2937;
+    }
+    *{box-sizing:border-box;font-family:Segoe UI,Roboto,Arial,sans-serif}
+    body{margin:0;background:#eef1f7;color:var(--text)}
+
+    /* Top bar */
+    .topbar{
+      height:56px;
+      background:var(--blue);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      padding:0 20px;
+      justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px}
+    .window-controls{opacity:.8}
+
+    /* Navigation */
+    .nav{
+      background:#e6e9f2;
+      padding:8px 20px;
+      display:flex;
+      gap:24px;
+      font-size:14px;
+    }
+    .nav span{cursor:pointer;opacity:.7}
+    .nav span.active{opacity:1;font-weight:600}
+
+    /* Main area */
+    .container{
+      padding:40px;
+      min-height:calc(100vh - 96px);
+    }
+
+    /* Upload screen */
+    .upload-box{
+      margin:auto;
+      max-width:520px;
+      height:260px;
+      background:#fff;
+      border:2px dashed var(--border);
+      border-radius:10px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .plus{
+      width:56px;height:56px;
+      border-radius:50%;
+      background:var(--blue);
+      color:#fff;
+      font-size:32px;
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:12px;
+    }
+    .upload-box p{margin:0;font-size:14px;opacity:.8}
+
+    /* Table view */
+    .sheet{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:6px;
+      overflow:auto;
+    }
+    table{border-collapse:collapse;width:100%;min-width:720px}
+    th,td{border:1px solid var(--border);padding:8px 10px;font-size:14px}
+    th{background:#f2f4fa;text-align:left}
+
+    .tabs{
+      display:flex;gap:16px;margin-top:10px;font-size:13px
+    }
+    .tab{padding:6px 10px;border-radius:4px;cursor:pointer;opacity:.6}
+    .tab.active{background:#e6ebff;opacity:1;font-weight:600}
+
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="brand">Qsee</div>
+    <div class="window-controls">— □ ✕</div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav">
+    <span class="active">Home</span>
+    <span>Parameters</span>
+    <span>Analysis</span>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+
+    <!-- Upload state -->
+    <div id="upload" class="upload-box">
+      <div class="plus">+</div>
+      <p>Upload File (Excel, CSV, JSON)</p>
+    </div>
+
+    <!-- Table state -->
+    <div id="sheet" class="hidden">
+      <div class="sheet">
+        <table>
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Time</th>
+              <th>Query</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Seoul</td><td>Yesterday</td><td>I went to Seoul yesterday for a meeting.</td></tr>
+            <tr><td>Busan</td><td>Last week</td><td>I visited Busan last week during the summer.</td></tr>
+            <tr><td>Seoul</td><td>Last month</td><td>I was in Seoul last month for a conference.</td></tr>
+            <tr><td>Korea</td><td>Last year</td><td>She moved to Korea last year and love it here.</td></tr>
+            <tr><td>Seoul</td><td>Recently</td><td>Recently, I saw an event in Seoul.</td></tr>
+            <tr><td>Busan</td><td>In March</td><td>He was in Busan last year for our team’s workshop.</td></tr>
+            <tr><td>Korea</td><td>Last week</td><td>I will be in Korea next week for a conference.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active">EN</div>
+        <div class="tab">KO</div>
+        <div class="tab">HI</div>
+        <div class="tab">EN-KO</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const sheet = document.getElementById('sheet');
+
+    upload.addEventListener('click', () => {
+      // Prototype behavior: mimic selecting dummy dataset
+      upload.classList.add('hidden');
+      sheet.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
